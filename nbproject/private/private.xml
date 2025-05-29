@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/Users/thuat/Documents/NetBeansProjects/SWP_TrainTicket/src/java/Models/TrainSchedule.java</file>
+            <file>file:/C:/Users/thuat/Documents/NetBeansProjects/SWP_TrainTicket/src/java/Models/ScheduleStop.java</file>
+            <file>file:/C:/Users/thuat/Documents/NetBeansProjects/SWP_TrainTicket/src/java/Models/Payment.java</file>
+            <file>file:/C:/Users/thuat/Documents/NetBeansProjects/SWP_TrainTicket/src/java/Models/Ticket.java</file>
+            <file>file:/C:/Users/thuat/Documents/NetBeansProjects/SWP_TrainTicket/src/java/DAO/DBContext.java</file>
+            <file>file:/C:/Users/thuat/Documents/NetBeansProjects/SWP_TrainTicket/src/java/Models/CarriageType.java</file>
+            <file>file:/C:/Users/thuat/Documents/NetBeansProjects/SWP_TrainTicket/src/java/Models/AuditLog.java</file>
+            <file>file:/C:/Users/thuat/Documents/NetBeansProjects/SWP_TrainTicket/src/java/Models/Refund.java</file>
+            <file>file:/C:/Users/thuat/Documents/NetBeansProjects/SWP_TrainTicket/src/java/Models/ScheduleSegmentPrice.java</file>
+            <file>file:/C:/Users/thuat/Documents/NetBeansProjects/SWP_TrainTicket/src/java/Models/Order.java</file>
+            <file>file:/C:/Users/thuat/Documents/NetBeansProjects/SWP_TrainTicket/src/java/Models/Promotion.java</file>
+            <file>file:/C:/Users/thuat/Documents/NetBeansProjects/SWP_TrainTicket/web/index.html</file>
+            <file>file:/C:/Users/thuat/Documents/NetBeansProjects/SWP_TrainTicket/src/java/Models/SeatType.java</file>
+            <file>file:/C:/Users/thuat/Documents/NetBeansProjects/SWP_TrainTicket/src/java/Models/Train.java</file>
+            <file>file:/C:/Users/thuat/Documents/NetBeansProjects/SWP_TrainTicket/src/java/Models/Seat.java</file>
+            <file>file:/C:/Users/thuat/Documents/NetBeansProjects/SWP_TrainTicket/src/java/Models/OrderPromotion.java</file>
+            <file>file:/C:/Users/thuat/Documents/NetBeansProjects/SWP_TrainTicket/src/java/Models/PassengerType.java</file>
+            <file>file:/C:/Users/thuat/Documents/NetBeansProjects/SWP_TrainTicket/src/java/Models/Carriages.java</file>
+            <file>file:/C:/Users/thuat/Documents/NetBeansProjects/SWP_TrainTicket/src/java/Models/Station.java</file>
+            <file>file:/C:/Users/thuat/Documents/NetBeansProjects/SWP_TrainTicket/src/java/Models/User.java</file>
+        </group>
+    </open-files>
+</project-private>
