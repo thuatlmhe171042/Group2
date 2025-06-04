@@ -2,6 +2,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
+package Models;
+
 import java.time.LocalDateTime;
 
 public class User {
@@ -14,6 +16,21 @@ public class User {
     private LocalDateTime createdAt;
 
     public User() {
+    }
+    
+    public User(String name, String email, String password, String phone) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.phone = phone;
+    }
+    
+    public User(String name, String email, String password, String phone, String role){
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.phone = phone;
+        this.role = role;
     }
 
     public User(int id, String name, String email, String password, String phone, String role, LocalDateTime createdAt) {
