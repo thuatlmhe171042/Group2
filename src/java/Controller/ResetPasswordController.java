@@ -7,6 +7,7 @@ package Controller;
 
 import DAO.UserDAO;
 import Models.User;
+import Utils.PasswordUtils;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -58,23 +59,15 @@ public class ResetPasswordController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        String email = request.getParameter("email");
-        
-        if (email == null || email.trim().isEmpty()) {
-            response.sendRedirect("forgotPassword.jsp");
-            return;
-        }
+        String token = request.getParameter("token");
+        UserDAO userDAO = new UserDAO();
 
-        // Kiểm tra email có tồn tại
-        UserDAO dao = new UserDAO();
-        User user = dao.getUserByEmail(email);
-        
-        if (user == null) {
-            response.sendRedirect("forgotPassword.jsp");
+        if (token == null || !userDAO.isValidResetToken(token)) {
+            request.setAttribute("error", "Link không hợp lệ hoặc đã hết hạn. Vui lòng thử lại.");
+            request.getRequestDispatcher("forgotpassword.jsp").forward(request, response);
             return;
         }
         
-        request.setAttribute("email", email);
         request.getRequestDispatcher("resetpassword.jsp").forward(request, response);
     } 
 
@@ -88,54 +81,43 @@ public class ResetPasswordController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        String email = request.getParameter("email");
-        String password = request.getParameter("password");
+        String token = request.getParameter("token");
+        String newPassword = request.getParameter("newPassword");
         String confirmPassword = request.getParameter("confirmPassword");
 
-        // Validate input
-        if (email == null || email.trim().isEmpty() ||
-            password == null || password.trim().isEmpty() ||
-            confirmPassword == null || confirmPassword.trim().isEmpty()) {
-            request.setAttribute("error", "Vui lòng điền đầy đủ thông tin");
-            request.setAttribute("email", email);
-            request.getRequestDispatcher("resetPassword.jsp").forward(request, response);
+        UserDAO userDAO = new UserDAO();
+
+        if (token == null || !userDAO.isValidResetToken(token)) {
+            request.setAttribute("error", "Yêu cầu không hợp lệ hoặc đã hết hạn. Vui lòng bắt đầu lại.");
+            request.getRequestDispatcher("forgotpassword.jsp").forward(request, response);
             return;
         }
 
-        // Kiểm tra email có tồn tại
-        UserDAO dao = new UserDAO();
-        User user = dao.getUserByEmail(email);
+        if (!newPassword.equals(confirmPassword)) {
+            request.setAttribute("error", "Mật khẩu xác nhận không khớp.");
+            request.setAttribute("token", token);
+            request.getRequestDispatcher("resetpassword.jsp").forward(request, response);
+            return;
+        }
         
-        if (user == null) {
-            request.setAttribute("error", "Email không tồn tại trong hệ thống");
-            request.getRequestDispatcher("resetPassword.jsp").forward(request, response);
+        String email = userDAO.getEmailFromResetToken(token);
+        if (email == null) {
+            request.setAttribute("error", "Không thể tìm thấy tài khoản liên kết với yêu cầu này.");
+            request.getRequestDispatcher("forgotpassword.jsp").forward(request, response);
             return;
         }
+        
+        String hashedPassword = PasswordUtils.hashPassword(newPassword);
+        boolean success = userDAO.updatePassword(email, hashedPassword);
 
-        // Validate password match
-        if (!password.equals(confirmPassword)) {
-            request.setAttribute("error", "Mật khẩu xác nhận không khớp");
-            request.setAttribute("email", email);
-            request.getRequestDispatcher("resetPassword.jsp").forward(request, response);
-            return;
-        }
-
-        // Validate password length
-        if (password.length() < 6) {
-            request.setAttribute("error", "Mật khẩu phải có ít nhất 6 ký tự");
-            request.setAttribute("email", email);
-            request.getRequestDispatcher("resetPassword.jsp").forward(request, response);
-            return;
-        }
-
-        // Update password
-        if (dao.updatePassword(email, password)) {
-            request.getSession().setAttribute("success", "Đặt lại mật khẩu thành công! Vui lòng đăng nhập.");
-            response.sendRedirect("login.jsp");
+        if (success) {
+            userDAO.invalidateResetToken(token);
+            request.getSession().setAttribute("successMessage", "Mật khẩu của bạn đã được cập nhật thành công. Vui lòng đăng nhập lại.");
+            response.sendRedirect("login");
         } else {
-            request.setAttribute("error", "Có lỗi xảy ra, vui lòng thử lại sau");
-            request.setAttribute("email", email);
-            request.getRequestDispatcher("resetPassword.jsp").forward(request, response);
+            request.setAttribute("error", "Đã có lỗi xảy ra khi cập nhật mật khẩu. Vui lòng thử lại.");
+            request.setAttribute("token", token);
+            request.getRequestDispatcher("resetpassword.jsp").forward(request, response);
         }
     }
 
@@ -145,7 +127,7 @@ public class ResetPasswordController extends HttpServlet {
      */
     @Override
     public String getServletInfo() {
-        return "Short description";
+        return "Handles the final step of password resetting.";
     }// </editor-fold>
 
 }

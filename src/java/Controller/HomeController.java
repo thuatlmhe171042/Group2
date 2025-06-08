@@ -58,58 +58,9 @@ public class HomeController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String action = request.getParameter("action");
-        HttpSession session = request.getSession();
-        User user = (User) session.getAttribute("user");
-        User admin = (User) session.getAttribute("admin");
-
-        // Thêm thông tin người dùng vào request
-        if (user != null) {
-            request.setAttribute("user", user);
-        }
-        if (admin != null) {
-            request.setAttribute("admin", admin);
-        }
-
-        // Xử lý các action
-        if (action != null && !action.isEmpty()) {
-            switch (action) {
-                case "logout":
-                    session.invalidate();
-                    response.sendRedirect("index.jsp");
-                    return;
-
-                case "profile":
-                    if (user == null && admin == null) {
-                        response.sendRedirect("login.jsp");
-                        return;
-                    }
-                    String profilePath = getProfilePath(user, admin);
-                    response.sendRedirect(profilePath);
-                    return;
-
-                case "dashboard":
-                    if (admin == null) {
-                        response.sendRedirect("adminLogin.jsp");
-                        return;
-                    }
-                    String dashboardPath = admin.getRole().equals("admin") ? 
-                            "admin/dashboard.jsp" : "staff/dashboard.jsp";
-                    response.sendRedirect(dashboardPath);
-                    return;
-            }
-        }
-
-        // Mặc định hiển thị trang chủ
-        request.getRequestDispatcher("index.jsp").forward(request, response);
-    }
-
-    private String getProfilePath(User user, User admin) {
-        if (admin != null) {
-            return admin.getRole().equals("admin") ? 
-                    "admin/profile.jsp" : "staff/profile.jsp";
-        }
-        return "user/profile.jsp";
+        // Chỉ cần chuyển tiếp đến trang home.jsp
+        // Mọi logic hiển thị đã được xử lý trong home.jsp và header.jsp
+        request.getRequestDispatcher("home.jsp").forward(request, response);
     }
 
     @Override
@@ -124,7 +75,7 @@ public class HomeController extends HttpServlet {
      */
     @Override
     public String getServletInfo() {
-        return "Short description";
+        return "Home page servlet";
     }// </editor-fold>
 
 }

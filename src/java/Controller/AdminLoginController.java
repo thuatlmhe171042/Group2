@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -64,12 +65,15 @@ public class AdminLoginController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         String role = request.getParameter("role");
+        String remember = request.getParameter("remember");
 
         // Validate input
-        if (email == null || email.trim().isEmpty() ||
+        if (email == null || email.trim().isEmpty() || 
             password == null || password.trim().isEmpty() ||
             role == null || role.trim().isEmpty()) {
             request.setAttribute("error", "Vui lòng điền đầy đủ thông tin");
@@ -77,39 +81,36 @@ public class AdminLoginController extends HttpServlet {
             return;
         }
 
-        UserDAO dao = new UserDAO();
-        
         // Validate role
-        if (!dao.isValidRole(role)) {
-            request.setAttribute("error", "Quyền truy cập không hợp lệ");
+        if (!role.equals("admin") && !role.equals("staff")) {
+            request.setAttribute("error", "Vai trò không hợp lệ");
             request.getRequestDispatcher("adminLogin.jsp").forward(request, response);
             return;
         }
 
-        // Check if email exists with specified role
-        if (!dao.checkEmailExistsWithRole(email, role)) {
-            request.setAttribute("error", "Email không tồn tại hoặc không có quyền truy cập này");
-            request.getRequestDispatcher("adminLogin.jsp").forward(request, response);
-            return;
-        }
-
-        // Try to login
+        UserDAO dao = new UserDAO();
         User user = dao.checkAdminLogin(email, password, role);
-        
+
         if (user == null) {
-            request.setAttribute("error", "Email hoặc mật khẩu không chính xác");
+            request.setAttribute("error", "Email, mật khẩu hoặc vai trò không chính xác");
             request.getRequestDispatcher("adminLogin.jsp").forward(request, response);
-        } else {
-            HttpSession session = request.getSession();
-            session.setAttribute("admin", user);
-            
-            // Chuyển hướng đến trang quản trị tương ứng
-            if (role.equals("admin")) {
-                response.sendRedirect("admin/dashboard.jsp");
-            } else {
-                response.sendRedirect("staff/dashboard.jsp");
-            }
+            return;
         }
+
+        // Login successful
+        HttpSession session = request.getSession();
+        session.setAttribute("admin", user);
+        
+        // Xử lý "Ghi nhớ đăng nhập"
+        if (remember != null) {
+            Cookie cookie = new Cookie("admin-remember", email + ":" + password + ":" + role);
+            cookie.setMaxAge(30 * 24 * 60 * 60); // 30 days
+            cookie.setPath("/");
+            response.addCookie(cookie);
+        }
+        
+        // Redirect to admin dashboard
+        response.sendRedirect("admin/dashboard.jsp");
     }
 
     @Override

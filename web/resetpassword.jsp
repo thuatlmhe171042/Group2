@@ -1,9 +1,9 @@
-<%@ page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Đặt lại mật khẩu</title>
+        <title>Đặt lại Mật khẩu</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
     </head>
@@ -35,23 +35,28 @@
                 <div class="col-md-5">
                     <div class="card shadow">
                         <div class="card-body p-4">
-                            <h3 class="text-center mb-4">Đặt lại mật khẩu</h3>
+                            <h3 class="text-center mb-4">Tạo mật khẩu mới</h3>
                             
-                            <% if (request.getAttribute("error") != null) { %>
-                            <div class="alert alert-danger" role="alert">
-                                <%= request.getAttribute("error") %>
-                            </div>
-                            <% } %>
+                            <%
+                                String error = (String) request.getAttribute("error");
+                                if (error != null) {
+                            %>
+                                    <div class="alert alert-danger" role="alert">
+                                        <%= error %>
+                                    </div>
+                            <%
+                                }
+                            %>
 
-                            <form action="resetpassword" method="POST">
-                                <input type="hidden" name="email" value="${email}">
-                                
+                            <form action="resetPassword" method="POST" id="resetForm">
+                                <%-- Truyền token một cách ẩn đi --%>
+                                <input type="hidden" name="token" value="${param.token}">
+
                                 <div class="mb-3">
-                                    <label for="password" class="form-label">Mật khẩu mới</label>
+                                    <label for="newPassword" class="form-label">Mật khẩu mới</label>
                                     <div class="input-group">
                                         <span class="input-group-text"><i class="bi bi-key"></i></span>
-                                        <input type="password" class="form-control" id="password" name="password" 
-                                               required minlength="6"
+                                        <input type="password" class="form-control" id="newPassword" name="newPassword" required minlength="6"
                                                title="Mật khẩu phải có ít nhất 6 ký tự">
                                         <button class="btn btn-outline-secondary" type="button" id="togglePassword">
                                             <i class="bi bi-eye"></i>
@@ -64,8 +69,7 @@
                                     <label for="confirmPassword" class="form-label">Xác nhận mật khẩu mới</label>
                                     <div class="input-group">
                                         <span class="input-group-text"><i class="bi bi-key-fill"></i></span>
-                                        <input type="password" class="form-control" id="confirmPassword" 
-                                               name="confirmPassword" required>
+                                        <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" required>
                                         <button class="btn btn-outline-secondary" type="button" id="toggleConfirmPassword">
                                             <i class="bi bi-eye"></i>
                                         </button>
@@ -73,7 +77,7 @@
                                 </div>
                                 
                                 <div class="d-grid gap-2">
-                                    <button type="submit" class="btn btn-primary">Đặt lại mật khẩu</button>
+                                    <button type="submit" class="btn btn-primary">Lưu mật khẩu</button>
                                 </div>
                                 <div class="text-center mt-3">
                                     <a href="login.jsp" class="text-decoration-none">
@@ -91,7 +95,7 @@
         <script>
             // Toggle password visibility for new password
             document.getElementById('togglePassword').addEventListener('click', function() {
-                var passwordInput = document.getElementById('password');
+                var passwordInput = document.getElementById('newPassword');
                 var icon = this.querySelector('i');
                 
                 if (passwordInput.type === 'password') {
@@ -122,8 +126,8 @@
             });
             
             // Validate password match
-            document.querySelector('form').addEventListener('submit', function(event) {
-                var password = document.getElementById('password').value;
+            document.getElementById('resetForm').addEventListener('submit', function(event) {
+                var password = document.getElementById('newPassword').value;
                 var confirmPassword = document.getElementById('confirmPassword').value;
                 
                 if (password !== confirmPassword) {

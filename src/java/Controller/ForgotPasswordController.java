@@ -7,6 +7,7 @@ package Controller;
 
 import DAO.UserDAO;
 import Models.User;
+import Utils.EmailService;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -57,6 +58,7 @@ public class ForgotPasswordController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
+        // Hiển thị trang nhập email để quên mật khẩu
         request.getRequestDispatcher("forgotpassword.jsp").forward(request, response);
     } 
 
@@ -70,42 +72,39 @@ public class ForgotPasswordController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
         String email = request.getParameter("email");
-
-        // Validate input
-        if (email == null || email.trim().isEmpty()) {
-            request.setAttribute("error", "Vui lòng nhập email");
-            request.getRequestDispatcher("forgotPassword.jsp").forward(request, response);
-            return;
-        }
-
-        // Validate email format
-        if (!email.matches("^[A-Za-z0-9+_.-]+@(.+)$")) {
-            request.setAttribute("error", "Email không hợp lệ");
-            request.getRequestDispatcher("forgotPassword.jsp").forward(request, response);
-            return;
-        }
-
-        UserDAO dao = new UserDAO();
-        User user = dao.getUserByEmail(email);
-
-        if (user == null) {
-            request.setAttribute("error", "Email không tồn tại trong hệ thống");
-            request.getRequestDispatcher("forgotPassword.jsp").forward(request, response);
-            return;
-        }
-
-        // Generate a simple random password
-        String newPassword = generateRandomPassword();
         
-        // Update password in database
-        if (dao.updatePassword(email, newPassword)) {
-            request.setAttribute("success", "Mật khẩu mới của bạn là: " + newPassword);
-            request.getRequestDispatcher("forgotPassword.jsp").forward(request, response);
-        } else {
-            request.setAttribute("error", "Có lỗi xảy ra, vui lòng thử lại sau");
-            request.getRequestDispatcher("forgotPassword.jsp").forward(request, response);
+        UserDAO userDAO = new UserDAO();
+        
+        // 1. Kiểm tra xem email có tồn tại trong hệ thống không
+        if (!userDAO.checkEmailExists(email)) {
+            request.setAttribute("error", "Email không tồn tại trong hệ thống.");
+            request.getRequestDispatcher("forgotpassword.jsp").forward(request, response);
+            return;
         }
+        
+        // 2. Tạo token reset và lưu vào database
+        String token = userDAO.createResetToken(email);
+        
+        if (token != null) {
+            // 3. Gửi email chứa link reset
+            try {
+                EmailService emailService = new EmailService();
+                String requestURL = request.getRequestURL().toString();
+                emailService.sendResetPasswordEmail(email, token, requestURL);
+                
+                // 4. Đặt thông báo thành công và hiển thị lại trang
+                request.setAttribute("successMessage", "Link đổi mật khẩu đã được gửi đến tài khoản mail của bạn, vui lòng kiểm tra lại.");
+            } catch (Exception e) {
+                e.printStackTrace();
+                request.setAttribute("error", "Đã có lỗi xảy ra trong quá trình gửi email. Vui lòng thử lại.");
+            }
+        } else {
+            request.setAttribute("error", "Không thể tạo yêu cầu đổi mật khẩu. Vui lòng thử lại.");
+        }
+        
+        request.getRequestDispatcher("forgotpassword.jsp").forward(request, response);
     }
 
     private String generateRandomPassword() {
@@ -126,7 +125,8 @@ public class ForgotPasswordController extends HttpServlet {
      */
     @Override
     public String getServletInfo() {
-        return "Short description";
+        return "Handles the user request to reset their password.";
     }// </editor-fold>
 
 }
+

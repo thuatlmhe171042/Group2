@@ -7,6 +7,7 @@ package Controller;
 
 import DAO.UserDAO;
 import Models.User;
+import Utils.PasswordUtils;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -71,6 +72,8 @@ public class RegisterController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        
         String name = request.getParameter("name");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
@@ -102,8 +105,8 @@ public class RegisterController extends HttpServlet {
             return;
         }
 
-        // Validate phone number
-        if (!phone.matches("\\d{10}")) {
+        // Validate phone number (allow international format)
+        if (!phone.matches("^\\+?[0-9]\\d{1,14}$")) {
             request.setAttribute("error", "Số điện thoại không hợp lệ");
             request.getRequestDispatcher("register.jsp").forward(request, response);
             return;
@@ -125,19 +128,23 @@ public class RegisterController extends HttpServlet {
             return;
         }
 
+        // Hash password before saving
+        String hashedPassword = PasswordUtils.hashPassword(password);
+
         // Create new user
         User user = new User();
         user.setName(name);
         user.setEmail(email);
-        user.setPassword(password);
+        user.setPassword(hashedPassword);
         user.setPhone(phone);
 
         // Try to register
         if (dao.register(user)) {
             // Redirect to login page with success message
-            request.getSession().setAttribute("success", "Đăng ký thành công! Vui lòng đăng nhập.");
+            request.getSession().setAttribute("successMessage", "Đăng ký thành công! Vui lòng đăng nhập.");
             response.sendRedirect("login.jsp");
         } else {
+            System.out.println("RegisterServlet: dao.register(user) returned false for email: " + user.getEmail());
             request.setAttribute("error", "Có lỗi xảy ra, vui lòng thử lại sau");
             request.getRequestDispatcher("register.jsp").forward(request, response);
         }
