@@ -1,47 +1,26 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package Models;
+package models;
 
 public class CarriageType {
     private int id;
     private String typeName;
     private String description;
+    private Double basePricePerKm;
 
-    public CarriageType() {
-    }
+    public CarriageType() {}
 
-    public CarriageType(int id, String typeName, String description) {
+    public CarriageType(int id, String typeName, String description, Double basePricePerKm) {
         this.id = id;
         this.typeName = typeName;
         this.description = description;
+        this.basePricePerKm = basePricePerKm;
     }
 
-    // Getters
-    public int getId() {
-        return id;
-    }
-
-    public String getTypeName() {
-        return typeName;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    // Setters
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setTypeName(String typeName) {
-        this.typeName = typeName;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
+    public int getId() { return id; }
+    public void setId(int id) { this.id = id; }
+    public String getTypeName() { return typeName; }
+    public void setTypeName(String typeName) { this.typeName = typeName; }
+    public String getDescription() { return description; }
+    public void setDescription(String description) { this.description = description; }
+    public Double getBasePricePerKm() { return basePricePerKm; }
+    public void setBasePricePerKm(Double basePricePerKm) { this.basePricePerKm = basePricePerKm; }
 }

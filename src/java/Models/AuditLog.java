@@ -1,27 +1,22 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package Models;
+package models;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 
 public class AuditLog {
     private int id;
-    private Integer userId;
+    private User user; // Gán luôn object User để dễ truy xuất tên nhân viên
     private String actionType;
     private String tableName;
-    private Integer recordId;
+    private int recordId;
     private String changeDetails;
     private String ipAddress;
-    private LocalDateTime timestamp;
+    private Date timestamp;
 
-    public AuditLog() {
-    }
+    public AuditLog() {}
 
-    public AuditLog(int id, Integer userId, String actionType, String tableName, Integer recordId, String changeDetails, String ipAddress, LocalDateTime timestamp) {
+    public AuditLog(int id, User user, String actionType, String tableName, int recordId, String changeDetails, String ipAddress, Date timestamp) {
         this.id = id;
-        this.userId = userId;
+        this.user = user;
         this.actionType = actionType;
         this.tableName = tableName;
         this.recordId = recordId;
@@ -30,70 +25,69 @@ public class AuditLog {
         this.timestamp = timestamp;
     }
 
-    // Getters
     public int getId() {
         return id;
     }
 
-    public Integer getUserId() {
-        return userId;
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getActionType() {
         return actionType;
     }
 
-    public String getTableName() {
-        return tableName;
-    }
-
-    public Integer getRecordId() {
-        return recordId;
-    }
-
-    public String getChangeDetails() {
-        return changeDetails;
-    }
-
-    public String getIpAddress() {
-        return ipAddress;
-    }
-
-    public LocalDateTime getTimestamp() {
-        return timestamp;
-    }
-
-    // Setters
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
-
     public void setActionType(String actionType) {
         this.actionType = actionType;
+    }
+
+    public String getTableName() {
+        return tableName;
     }
 
     public void setTableName(String tableName) {
         this.tableName = tableName;
     }
 
-    public void setRecordId(Integer recordId) {
+    public int getRecordId() {
+        return recordId;
+    }
+
+    public void setRecordId(int recordId) {
         this.recordId = recordId;
+    }
+
+    public String getChangeDetails() {
+        return changeDetails;
     }
 
     public void setChangeDetails(String changeDetails) {
         this.changeDetails = changeDetails;
     }
 
+    public String getIpAddress() {
+        return ipAddress;
+    }
+
     public void setIpAddress(String ipAddress) {
         this.ipAddress = ipAddress;
     }
 
-    public void setTimestamp(LocalDateTime timestamp) {
+    public Date getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(Date timestamp) {
         this.timestamp = timestamp;
     }
 
+    
 }

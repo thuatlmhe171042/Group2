@@ -1,15 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package Models;
-
-import java.time.LocalDateTime;
-import java.time.LocalDate;
-import java.math.BigDecimal;
+package models;
 
 public class Ticket {
     private int id;
+    private String ticketCode;
     private Integer orderId;
     private int scheduleId;
     private int departureStopId;
@@ -19,16 +12,20 @@ public class Ticket {
     private String passengerName;
     private String passengerIdType;
     private String passengerIdNumber;
-    private LocalDate passengerDateOfBirth;
+    private String passengerDateOfBirth;
     private String ticketStatus;
-    private BigDecimal price;
-    private LocalDateTime createdAt;
+    private double price;
+    private String createdAt;
+    private String updatedAt;
+    private boolean isDeleted;
 
-    public Ticket() {
-    }
+    public Ticket() {}
 
-    public Ticket(int id, Integer orderId, int scheduleId, int departureStopId, int arrivalStopId, int seatId, int passengerTypeId, String passengerName, String passengerIdType, String passengerIdNumber, LocalDate passengerDateOfBirth, String ticketStatus, BigDecimal price, LocalDateTime createdAt) {
+    public Ticket(int id, String ticketCode, Integer orderId, int scheduleId, int departureStopId, int arrivalStopId,
+                  int seatId, int passengerTypeId, String passengerName, String passengerIdType, String passengerIdNumber,
+                  String passengerDateOfBirth, String ticketStatus, double price, String createdAt, String updatedAt, boolean isDeleted) {
         this.id = id;
+        this.ticketCode = ticketCode;
         this.orderId = orderId;
         this.scheduleId = scheduleId;
         this.departureStopId = departureStopId;
@@ -42,120 +39,144 @@ public class Ticket {
         this.ticketStatus = ticketStatus;
         this.price = price;
         this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+        this.isDeleted = isDeleted;
     }
 
-    // Getters
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getTicketCode() {
+        return ticketCode;
+    }
+
+    public void setTicketCode(String ticketCode) {
+        this.ticketCode = ticketCode;
     }
 
     public Integer getOrderId() {
         return orderId;
     }
 
-    public int getScheduleId() {
-        return scheduleId;
-    }
-
-    public int getDepartureStopId() {
-        return departureStopId;
-    }
-
-    public int getArrivalStopId() {
-        return arrivalStopId;
-    }
-
-    public int getSeatId() {
-        return seatId;
-    }
-
-    public int getPassengerTypeId() {
-        return passengerTypeId;
-    }
-
-    public String getPassengerName() {
-        return passengerName;
-    }
-
-    public String getPassengerIdType() {
-        return passengerIdType;
-    }
-
-    public String getPassengerIdNumber() {
-        return passengerIdNumber;
-    }
-
-    public LocalDate getPassengerDateOfBirth() {
-        return passengerDateOfBirth;
-    }
-
-    public String getTicketStatus() {
-        return ticketStatus;
-    }
-
-    public BigDecimal getPrice() {
-        return price;
-    }
-
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    // Setters
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public void setOrderId(Integer orderId) {
         this.orderId = orderId;
+    }
+
+    public int getScheduleId() {
+        return scheduleId;
     }
 
     public void setScheduleId(int scheduleId) {
         this.scheduleId = scheduleId;
     }
 
+    public int getDepartureStopId() {
+        return departureStopId;
+    }
+
     public void setDepartureStopId(int departureStopId) {
         this.departureStopId = departureStopId;
+    }
+
+    public int getArrivalStopId() {
+        return arrivalStopId;
     }
 
     public void setArrivalStopId(int arrivalStopId) {
         this.arrivalStopId = arrivalStopId;
     }
 
+    public int getSeatId() {
+        return seatId;
+    }
+
     public void setSeatId(int seatId) {
         this.seatId = seatId;
+    }
+
+    public int getPassengerTypeId() {
+        return passengerTypeId;
     }
 
     public void setPassengerTypeId(int passengerTypeId) {
         this.passengerTypeId = passengerTypeId;
     }
 
+    public String getPassengerName() {
+        return passengerName;
+    }
+
     public void setPassengerName(String passengerName) {
         this.passengerName = passengerName;
+    }
+
+    public String getPassengerIdType() {
+        return passengerIdType;
     }
 
     public void setPassengerIdType(String passengerIdType) {
         this.passengerIdType = passengerIdType;
     }
 
+    public String getPassengerIdNumber() {
+        return passengerIdNumber;
+    }
+
     public void setPassengerIdNumber(String passengerIdNumber) {
         this.passengerIdNumber = passengerIdNumber;
     }
 
-    public void setPassengerDateOfBirth(LocalDate passengerDateOfBirth) {
+    public String getPassengerDateOfBirth() {
+        return passengerDateOfBirth;
+    }
+
+    public void setPassengerDateOfBirth(String passengerDateOfBirth) {
         this.passengerDateOfBirth = passengerDateOfBirth;
+    }
+
+    public String getTicketStatus() {
+        return ticketStatus;
     }
 
     public void setTicketStatus(String ticketStatus) {
         this.ticketStatus = ticketStatus;
     }
 
-    public void setPrice(BigDecimal price) {
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
         this.price = price;
     }
 
-    public void setCreatedAt(LocalDateTime createdAt) {
+    public String getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(String createdAt) {
         this.createdAt = createdAt;
     }
 
+    public String getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(String updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    public boolean isIsDeleted() {
+        return isDeleted;
+    }
+
+    public void setIsDeleted(boolean isDeleted) {
+        this.isDeleted = isDeleted;
+    }
+    
 }

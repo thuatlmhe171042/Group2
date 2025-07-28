@@ -1,11 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package Models;
-
-import java.time.LocalDateTime;
-import java.math.BigDecimal;
+package models;
 
 public class Promotion {
     private int id;
@@ -13,19 +6,21 @@ public class Promotion {
     private String name;
     private String description;
     private String discountType;
-    private BigDecimal discountValue;
-    private LocalDateTime startDate;
-    private LocalDateTime endDate;
-    private Integer usageLimit;
+    private double discountValue;
+    private String startDate;     // Có thể dùng java.sql.Timestamp
+    private String endDate;
+    private int usageLimit;
     private int currentUsageCount;
     private String status;
-    private LocalDateTime createdAt;
-    private Integer createdBy;
+    private String createdAt;
+    private int createdBy;
+    private boolean isDeleted;
 
-    public Promotion() {
-    }
+    public Promotion() {}
 
-    public Promotion(int id, String promotionCode, String name, String description, String discountType, BigDecimal discountValue, LocalDateTime startDate, LocalDateTime endDate, Integer usageLimit, int currentUsageCount, String status, LocalDateTime createdAt, Integer createdBy) {
+    public Promotion(int id, String promotionCode, String name, String description, String discountType, double discountValue,
+                     String startDate, String endDate, int usageLimit, int currentUsageCount, String status,
+                     String createdAt, int createdBy, boolean isDeleted) {
         this.id = id;
         this.promotionCode = promotionCode;
         this.name = name;
@@ -39,111 +34,119 @@ public class Promotion {
         this.status = status;
         this.createdAt = createdAt;
         this.createdBy = createdBy;
+        this.isDeleted = isDeleted;
     }
 
-    // Getters
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getPromotionCode() {
         return promotionCode;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public String getDiscountType() {
-        return discountType;
-    }
-
-    public BigDecimal getDiscountValue() {
-        return discountValue;
-    }
-
-    public LocalDateTime getStartDate() {
-        return startDate;
-    }
-
-    public LocalDateTime getEndDate() {
-        return endDate;
-    }
-
-    public Integer getUsageLimit() {
-        return usageLimit;
-    }
-
-    public int getCurrentUsageCount() {
-        return currentUsageCount;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public Integer getCreatedBy() {
-        return createdBy;
-    }
-
-    // Setters
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public void setPromotionCode(String promotionCode) {
         this.promotionCode = promotionCode;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getDiscountType() {
+        return discountType;
     }
 
     public void setDiscountType(String discountType) {
         this.discountType = discountType;
     }
 
-    public void setDiscountValue(BigDecimal discountValue) {
+    public double getDiscountValue() {
+        return discountValue;
+    }
+
+    public void setDiscountValue(double discountValue) {
         this.discountValue = discountValue;
     }
 
-    public void setStartDate(LocalDateTime startDate) {
+    public String getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(String startDate) {
         this.startDate = startDate;
     }
 
-    public void setEndDate(LocalDateTime endDate) {
+    public String getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(String endDate) {
         this.endDate = endDate;
     }
 
-    public void setUsageLimit(Integer usageLimit) {
+    public int getUsageLimit() {
+        return usageLimit;
+    }
+
+    public void setUsageLimit(int usageLimit) {
         this.usageLimit = usageLimit;
+    }
+
+    public int getCurrentUsageCount() {
+        return currentUsageCount;
     }
 
     public void setCurrentUsageCount(int currentUsageCount) {
         this.currentUsageCount = currentUsageCount;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
     public void setStatus(String status) {
         this.status = status;
     }
 
-    public void setCreatedAt(LocalDateTime createdAt) {
+    public String getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(String createdAt) {
         this.createdAt = createdAt;
     }
 
-    public void setCreatedBy(Integer createdBy) {
+    public int getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(int createdBy) {
         this.createdBy = createdBy;
     }
+
+    public boolean isIsDeleted() {
+        return isDeleted;
+    }
+
+    public void setIsDeleted(boolean isDeleted) {
+        this.isDeleted = isDeleted;
+    }
+    
 }

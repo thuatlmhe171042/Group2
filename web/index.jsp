@@ -1,95 +1,88 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="vi">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Vé Tàu Online - Đặt Vé Nhanh Chóng, Tiện Lợi</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
-        <link rel="stylesheet" href="css/style.css">
-        <style>
-            .hero-section {
-                background: url('https://images.unsplash.com/photo-1570125909232-eb263c1869e7?q=80&w=2070&auto=format&fit=crop') no-repeat center center;
-                background-size: cover;
-                height: 60vh;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                text-align: center;
-                color: white;
-                position: relative;
-            }
-            .hero-section::before {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                background: rgba(0, 0, 0, 0.5);
-            }
-            .hero-content {
-                position: relative;
-                z-index: 1;
-            }
-            .hero-content h1 {
-                font-size: 3.5rem;
-                font-weight: bold;
-            }
-            .hero-content p {
-                font-size: 1.5rem;
-            }
-        </style>
-    </head>
-    <body>
-        
-        <jsp:include page="common/header.jsp" />
+<head>
+    <meta charset="UTF-8">
+    <title>TrainTicket - Đặt vé tàu trực tuyến</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <%@ include file="header.jsp" %>
+    <!-- Bootstrap CSS 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="file.css">
+    
+</head>
+<body>
 
-        <!-- Hero Section -->
-        <header class="hero-section">
-            <div class="hero-content">
-                <h1 class="display-4">Chào Mừng Đến Với Dịch Vụ Vé Tàu Online</h1>
-                <p class="lead">Đặt vé tàu nhanh chóng, an toàn và tiện lợi cho mọi hành trình.</p>
-                <a href="login.jsp" class="btn btn-primary btn-lg mt-3">Bắt Đầu Đặt Vé</a>
+    <div class="container mt-4">
+        <div class="row align-items-center bg-light rounded-3 p-4 shadow-sm">
+            <div class="col-md-7 mb-3 mb-md-0">
+                <h1 class="display-5 fw-bold text-primary">Đặt vé tàu trực tuyến</h1>
+                <p class="lead mb-4">Nhanh chóng - An toàn - Tiện lợi <br> Trải nghiệm đặt vé tàu 24/7, chọn chỗ ngồi theo ý muốn và nhiều ưu đãi hấp dẫn.</p>
+                <ul class="mb-4 list-unstyled">
+                    <li><i class="bi bi-check-circle-fill text-success"></i> Lịch trình đa dạng, giá vé minh bạch</li>
+                    <li><i class="bi bi-check-circle-fill text-success"></i> Thanh toán bảo mật, xác nhận nhanh qua email</li>
+                    <li><i class="bi bi-check-circle-fill text-success"></i> Hỗ trợ trả vé tiện lợi</li>
+                </ul>
             </div>
-        </header>
-
-        <!-- Features Section -->
-        <div class="container my-5">
-            <h2 class="text-center mb-4">Tại sao chọn chúng tôi?</h2>
-            <div class="row text-center">
-                <div class="col-md-4">
-                    <div class="feature-icon mb-3">
-                        <i class="bi bi-clock-history fs-1 text-primary"></i>
-                    </div>
-                    <h3>Nhanh chóng</h3>
-                    <p>Chỉ với vài cú nhấp chuột, bạn đã có ngay tấm vé cho chuyến đi của mình.</p>
-                </div>
-                <div class="col-md-4">
-                    <div class="feature-icon mb-3">
-                        <i class="bi bi-shield-check fs-1 text-primary"></i>
-                    </div>
-                    <h3>An toàn</h3>
-                    <p>Hệ thống thanh toán được bảo mật tuyệt đối, đảm bảo an toàn thông tin.</p>
-                </div>
-                <div class="col-md-4">
-                    <div class="feature-icon mb-3">
-                        <i class="bi bi-headset fs-1 text-primary"></i>
-                    </div>
-                    <h3>Hỗ trợ 24/7</h3>
-                    <p>Đội ngũ hỗ trợ của chúng tôi luôn sẵn sàng giải đáp mọi thắc mắc của bạn.</p>
-                </div>
+            <div class="col-md-5 text-center">
+                <img src="https://homepage.momocdn.net/img/momo-upload-api-211014103142-637698043027982617.jpg" alt="Đặt vé tàu" class="img-fluid rounded shadow-sm" style="max-height:230px;">
             </div>
         </div>
-        
-        <jsp:include page="common/footer.jsp" />
+    </div>
 
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    </body>
+    <!-- Form tìm kiếm vé -->
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <form action="home" method="get" class="card p-4 shadow-lg border-0">
+                    <h4 class="mb-4 text-center text-primary">Tìm chuyến tàu phù hợp</h4>
+                    <div class="row g-3">
+                        <div class="col-md-3">
+                            <label for="fromStation" class="form-label">Ga đi</label>
+                            <input list="stationList" id="fromStation" name="fromStation" class="form-control" required placeholder="Nhập tên hoặc chọn ga đi">
+                            <datalist id="stationList">
+                                <c:forEach var="station" items="${stationList}">
+                                    <option value="${station.stationName} (${station.stationCode})">
+                                </c:forEach>
+                            </datalist>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="toStation" class="form-label">Ga đến</label>
+                            <input list="stationList2" id="toStation" name="toStation" class="form-control" required placeholder="Nhập tên hoặc chọn ga đến">
+                            <datalist id="stationList2">
+                                <c:forEach var="station" items="${stationList}">
+                                    <option value="${station.stationName} (${station.stationCode})">
+                                </c:forEach>
+                            </datalist>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="departDate" class="form-label">Ngày đi</label>
+                            <input type="date" class="form-control" id="departDate" name="departDate" min="<%= java.time.LocalDate.now() %>" required>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="returnDate" class="form-label">Ngày về <span class="text-muted small">(Không bắt buộc)</span></label>
+                            <input type="date" class="form-control" id="returnDate" name="returnDate" min="<%= java.time.LocalDate.now() %>">
+                        </div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col text-center">
+                            <button type="submit" class="btn btn-primary px-5 py-2 fw-bold">Tìm vé</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <%@ include file="footer.jsp" %>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="file.js"></script>
+</body>
 </html>
-
-
-
 
 

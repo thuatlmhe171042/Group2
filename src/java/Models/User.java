@@ -1,39 +1,21 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package Models;
+package models;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 
 public class User {
     private int id;
     private String name;
     private String email;
-    private String password;
+    private String password; // Có thể để null khi lấy danh sách
     private String phone;
     private String role;
-    private LocalDateTime createdAt;
+    private Date createdAt;
+    private Date updatedAt;
+    private boolean deleted;
 
-    public User() {
-    }
-    
-    public User(String name, String email, String password, String phone) {
-        this.name = name;
-        this.email = email;
-        this.password = password;
-        this.phone = phone;
-    }
-    
-    public User(String name, String email, String password, String phone, String role){
-        this.name = name;
-        this.email = email;
-        this.password = password;
-        this.phone = phone;
-        this.role = role;
-    }
+    public User() {}
 
-    public User(int id, String name, String email, String password, String phone, String role, LocalDateTime createdAt) {
+    public User(int id, String name, String email, String password, String phone, String role, Date createdAt, Date updatedAt, boolean isDeleted) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -41,64 +23,81 @@ public class User {
         this.phone = phone;
         this.role = role;
         this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+        this.deleted = isDeleted;
     }
 
-    // Getters
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
         return name;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public String getRole() {
-        return role;
-    }
-
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    // Setters
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getEmail() {
+        return email;
     }
 
     public void setEmail(String email) {
         this.email = email;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getPhone() {
+        return phone;
     }
 
     public void setPhone(String phone) {
         this.phone = phone;
     }
 
+    public String getRole() {
+        return role;
+    }
+
     public void setRole(String role) {
         this.role = role;
     }
 
-    public void setCreatedAt(LocalDateTime createdAt) {
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
     }
 
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    public boolean isDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(boolean isDeleted) {
+        this.deleted = deleted;
+    }
+
+    
 }

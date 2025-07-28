@@ -2,22 +2,26 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Models;
+package models;
 
-import java.time.LocalDateTime;
-
+/**
+ *
+ * @author thuat
+ */
 public class ScheduleStop {
     private int id;
     private int scheduleId;
     private int stationId;
     private int stopSequence;
-    private LocalDateTime arrivalTime;
-    private LocalDateTime departureTime;
+    private String arrivalTime;
+    private String departureTime;
 
     public ScheduleStop() {
+        
+        
     }
 
-    public ScheduleStop(int id, int scheduleId, int stationId, int stopSequence, LocalDateTime arrivalTime, LocalDateTime departureTime) {
+    public ScheduleStop(int id, int scheduleId, int stationId, int stopSequence, String arrivalTime, String departureTime) {
         this.id = id;
         this.scheduleId = scheduleId;
         this.stationId = stationId;
@@ -25,54 +29,57 @@ public class ScheduleStop {
         this.arrivalTime = arrivalTime;
         this.departureTime = departureTime;
     }
+    
+    
+    
 
-    // Getters
     public int getId() {
         return id;
-    }
-
-    public int getScheduleId() {
-        return scheduleId;
-    }
-
-    public int getStationId() {
-        return stationId;
-    }
-
-    public int getStopSequence() {
-        return stopSequence;
-    }
-
-    public LocalDateTime getArrivalTime() {
-        return arrivalTime;
-    }
-
-    public LocalDateTime getDepartureTime() {
-        return departureTime;
     }
 
     public void setId(int id) {
         this.id = id;
     }
 
+    public int getScheduleId() {
+        return scheduleId;
+    }
+
     public void setScheduleId(int scheduleId) {
         this.scheduleId = scheduleId;
+    }
+
+    public int getStationId() {
+        return stationId;
     }
 
     public void setStationId(int stationId) {
         this.stationId = stationId;
     }
 
+    public int getStopSequence() {
+        return stopSequence;
+    }
+
     public void setStopSequence(int stopSequence) {
         this.stopSequence = stopSequence;
     }
 
-    public void setArrivalTime(LocalDateTime arrivalTime) {
+    public String getArrivalTime() {
+        return arrivalTime;
+    }
+
+    public void setArrivalTime(String arrivalTime) {
         this.arrivalTime = arrivalTime;
     }
 
-    public void setDepartureTime(LocalDateTime departureTime) {
-        this.departureTime = departureTime;
+    public String getDepartureTime() {
+        return departureTime;
     }
 
+    public void setDepartureTime(String departureTime) {
+        this.departureTime = departureTime;
+    }
+    
+    
 }
