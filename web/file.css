@@ -1,0 +1,48 @@
+.cart-sidebar {
+    position: fixed;
+    right: 32px; top: 110px;
+    width: 320px;
+    min-height: 120px;
+    max-height: 60vh;
+    background: #fff;
+    border: 2px solid #90caf9;
+    border-radius: 14px;
+    box-shadow: 0 2px 16px #90caf999;
+    z-index: 3000;
+    padding: 18px 18px 12px 18px;
+    font-size: 15px;
+    overflow-y: auto;
+}
+.cart-sidebar ul { list-style: none; padding: 0; margin: 0; }
+.cart-sidebar li {
+    margin: 8px 0; border-bottom: 1px solid #eee; padding-bottom: 6px;
+    display: flex; align-items: center; justify-content: space-between;
+}
+.cart-remove-btn {
+    color: #f44336; background: none; border: none; font-size: 17px; cursor: pointer; margin-left: 8px;
+}
+.cart-remove-btn:hover { color: #d32f2f; }
+.cart-timer { color: #2196f3; font-weight: bold; margin-left: 8px; font-size: 14px;}
+.cart-title { font-weight: bold; font-size: 16px; margin-bottom: 12px;}
+
+.seat-map { padding: 12px 0 16px 14px;}
+.seat-row { margin-bottom: 7px; }
+.seat {
+    width: 33px; height: 33px; margin: 1.5px; border-radius: 7px;
+    display: inline-block; border: 1px solid #888;
+    background: #fff; text-align: center; line-height: 33px; cursor:pointer;
+    font-size: 14px; transition: background 0.2s, color 0.2s;
+}
+.seat-free { background: #fff; }
+.seat-booked { background: #ef5350; color: #fff; cursor:not-allowed; }
+.seat-selected { background: #8bc34a; color: #fff; }
+@media (min-width: 768px) {
+    .container-fluid {
+        margin-left: 220px !important; /* đúng bằng sidebar */
+    }
+}
+@media (max-width: 767px) {
+    .container-fluid {
+        margin-left: 0 !important;
+    }
+}
