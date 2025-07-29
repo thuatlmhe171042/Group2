@@ -4,31 +4,44 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/thuat/Documents/NetBeansProjects/Group2/src/java/dal/PassengerTypeDAO.java</file>
+            <file>file:/C:/Users/thuat/Documents/NetBeansProjects/Group2/src/java/controller/ScheduleDetailServlet.java</file>
+            <file>file:/C:/Users/thuat/Documents/NetBeansProjects/Group2/web/refundList.jsp</file>
+            <file>file:/C:/Users/thuat/Documents/NetBeansProjects/Group2/src/java/controller/PaymentResultServlet.java</file>
             <file>file:/C:/Users/thuat/Documents/NetBeansProjects/Group2/web/WEB-INF/web.xml</file>
             <file>file:/C:/Users/thuat/Documents/NetBeansProjects/Group2/src/java/admin/controller/AdminDashboardServlet.java</file>
             <file>file:/C:/Users/thuat/Documents/NetBeansProjects/Group2/web/resetPassword.jsp</file>
             <file>file:/C:/Users/thuat/Documents/NetBeansProjects/Group2/web/staff/staffDashboard.jsp</file>
+            <file>file:/C:/Users/thuat/Documents/NetBeansProjects/Group2/web/schedule_detail_fragment.jsp</file>
+            <file>file:/C:/Users/thuat/Documents/NetBeansProjects/Group2/src/java/controller/ListOrderServlet.java</file>
             <file>file:/C:/Users/thuat/Documents/NetBeansProjects/Group2/web/enterOtp.jsp</file>
             <file>file:/C:/Users/thuat/Documents/NetBeansProjects/Group2/src/java/utils/VnPayUtil.java</file>
             <file>file:/C:/Users/thuat/Documents/NetBeansProjects/Group2/src/java/controller/PlaceOrderServlet.java</file>
+            <file>file:/C:/Users/thuat/Documents/NetBeansProjects/Group2/web/scheduleDetail.jsp</file>
             <file>file:/C:/Users/thuat/Documents/NetBeansProjects/Group2/web/404Error.jsp</file>
             <file>file:/C:/Users/thuat/Documents/NetBeansProjects/Group2/web/login.jsp</file>
             <file>file:/C:/Users/thuat/Documents/NetBeansProjects/Group2/src/java/controller/ResetPasswordServlet.java</file>
+            <file>file:/C:/Users/thuat/Documents/NetBeansProjects/Group2/web/orderList.jsp</file>
             <file>file:/C:/Users/thuat/Documents/NetBeansProjects/Group2/web/header.jsp</file>
             <file>file:/C:/Users/thuat/Documents/NetBeansProjects/Group2/web/checkout.jsp</file>
             <file>file:/C:/Users/thuat/Documents/NetBeansProjects/Group2/src/java/utils/JavaMailUtil.java</file>
             <file>file:/C:/Users/thuat/Documents/NetBeansProjects/Group2/src/java/controller/LoginServlet.java</file>
             <file>file:/C:/Users/thuat/Documents/NetBeansProjects/Group2/src/java/controller/ForgotPasswordServlet.java</file>
             <file>file:/C:/Users/thuat/Documents/NetBeansProjects/Group2/web/staff/sidebar.jsp</file>
+            <file>file:/C:/Users/thuat/Documents/NetBeansProjects/Group2/src/java/controller/RefundListServlet.java</file>
+            <file>file:/C:/Users/thuat/Documents/NetBeansProjects/Group2/web/search-ticket.js</file>
             <file>file:/C:/Users/thuat/Documents/NetBeansProjects/Group2/web/index.jsp</file>
             <file>file:/C:/Users/thuat/Documents/NetBeansProjects/Group2/src/java/controller/RegisterServlet.java</file>
+            <file>file:/C:/Users/thuat/Documents/NetBeansProjects/Group2/web/paymentResult.jsp</file>
             <file>file:/C:/Users/thuat/Documents/NetBeansProjects/Group2/src/java/staff/controller/StaffDashboardServlet.java</file>
             <file>file:/C:/Users/thuat/Documents/NetBeansProjects/Group2/src/java/dal/CarriageDAO.java</file>
+            <file>file:/C:/Users/thuat/Documents/NetBeansProjects/Group2/web/searchResult.jsp</file>
             <file>file:/C:/Users/thuat/Documents/NetBeansProjects/Group2/src/java/dal/CarriageTypeDAO.java</file>
             <file>file:/C:/Users/thuat/Documents/NetBeansProjects/Group2/src/java/controller/LogoutServlet.java</file>
             <file>file:/C:/Users/thuat/Documents/NetBeansProjects/Group2/web/file.css</file>
             <file>file:/C:/Users/thuat/Documents/NetBeansProjects/Group2/src/java/controller/VerifyOtpServlet.java</file>
+            <file>file:/C:/Users/thuat/Documents/NetBeansProjects/Group2/src/java/controller/RefundTicketServlet.java</file>
             <file>file:/C:/Users/thuat/Documents/NetBeansProjects/Group2/src/java/controller/SearchTicketServlet.java</file>
+            <file>file:/C:/Users/thuat/Documents/NetBeansProjects/Group2/src/java/controller/ScheduleDetailAjaxServlet.java</file>
             <file>file:/C:/Users/thuat/Documents/NetBeansProjects/Group2/src/java/controller/CheckoutServlet.java</file>
             <file>file:/C:/Users/thuat/Documents/NetBeansProjects/Group2/src/java/utils/EmailUtil.java</file>
             <file>file:/C:/Users/thuat/Documents/NetBeansProjects/Group2/src/java/controller/VerifyOtpRegisterServlet.java</file>
